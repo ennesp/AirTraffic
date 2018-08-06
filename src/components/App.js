@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Header from './Header';
 import List from './List'
 import '../App.css';
 
-const URL = 'https://cors-anywhere.herokuapp.com/https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lfDstU=120';
+const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstU=120';
 
 class App extends Component {
 
@@ -31,24 +32,34 @@ class App extends Component {
         );
     }
 
-    componentDidMount(){
+    componentDidMount = () => {
         //Getting user location
         if (navigator.geolocation){
             navigator.geolocation.getCurrentPosition(this.getFlights, this.showError);
         }
     }
 
-    getFlights(position){
+    getFlights = position => {
         this.setState({
             location: {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             }
         });
-        console.log(this.state.location)
+
+        const location = this.state.location;
+
+        const URL = `${BASE_URL}&lat=${location.lat}&lng=${location.lng}`;
+
+        //Getting flights data
+        axios(URL).then(response => {
+            console.log(response.data);
+        });
+
     }
 
-    showError(error) {
+    //Display error if location is unavailable
+    showError = error => {
         let err;
         switch(error.code) {
             case error.PERMISSION_DENIED:
@@ -63,6 +74,8 @@ class App extends Component {
             case error.UNKNOWN_ERROR:
                 err = "An unknown error occurred."
                 break;
+            default:
+                err = ''
         }
 
         this.setState({
