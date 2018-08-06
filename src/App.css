@@ -16,3 +16,17 @@ h3{
     border: 1px solid #8d0b0b;
     margin-top: 40px;
 }
+
+.flight-details{
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.flight-details .info{
+    margin-bottom: 20px;
+}
+
+.company-logo{
+    width: 60px;
+}
