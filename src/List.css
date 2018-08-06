@@ -9,9 +9,14 @@
 }
 
 .flights-list li{
-    display: flex;
     height: 45px;
     padding: 0 10px;
+    display: flex;
+}
+
+.flights-list li a{
+    display: flex;
+    width: 100%;
 }
 
 .flights-list li div{

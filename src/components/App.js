@@ -83,10 +83,9 @@ class App extends Component {
 
                 <main className="main-content">
                     <h3>List of all airplanes that are flying over current location of user</h3>
-                    { this.state.error == '' && <List flights={this.state.flights} />}
-                    { this.state.error != '' && <Error content={this.state.error} />}
+                    { this.state.error === '' && <List flights={this.state.flights} />}
+                    { this.state.error !== '' && <Error content={this.state.error} />}
                 </main>
-
             </div>
         );
     }
