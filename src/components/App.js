@@ -13,23 +13,11 @@ class App extends Component {
 
         this.state = {
             location: {},
+            flights: [],
             error: ''
         }
 
         this.getFlights = this.getFlights.bind(this);
-    }
-
-    render(){
-        return (
-            <div className="App">
-                <Header />
-
-                <main className="main-content">
-                    <List />
-                </main>
-
-            </div>
-        );
     }
 
     componentDidMount = () => {
@@ -53,7 +41,11 @@ class App extends Component {
 
         //Getting flights data
         axios(URL).then(response => {
-            console.log(response.data);
+            this.setState({
+                flights: response.data.acList
+            });
+
+            console.log(this.state.flights);
         });
 
     }
@@ -81,6 +73,19 @@ class App extends Component {
         this.setState({
             error: err
         });
+    }
+
+    render(){
+        return (
+            <div className="App">
+                <Header />
+
+                <main className="main-content">
+                    <List flights={this.state.flights} />
+                </main>
+
+            </div>
+        );
     }
 }
 
