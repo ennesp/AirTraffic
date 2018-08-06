@@ -5,7 +5,7 @@ import '../List.css';
 const List = props => (
     <div className="flights-list">
         <li className="list-header">
-            <div>&nbsp;</div>
+            <div>Direction</div>
             <div>Altitude</div>
             <div>Flight code</div>
         </li>

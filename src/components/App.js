@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Header from './Header';
-import List from './List'
+import List from './List';
+import Error from './Error';
 import '../App.css';
 
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstU=120';
@@ -55,7 +56,7 @@ class App extends Component {
         let err;
         switch(error.code) {
             case error.PERMISSION_DENIED:
-                err = "User denied the request for Geolocation."
+                err = "Location is not available. Allow location so we can show airplanes that are flying over your location."
                 break;
             case error.POSITION_UNAVAILABLE:
                 err = "Location information is unavailable."
@@ -81,7 +82,9 @@ class App extends Component {
                 <Header />
 
                 <main className="main-content">
-                    <List flights={this.state.flights} />
+                    <h3>List of all airplanes that are flying over current location of user</h3>
+                    { this.state.error == '' && <List flights={this.state.flights} />}
+                    { this.state.error != '' && <Error content={this.state.error} />}
                 </main>
 
             </div>

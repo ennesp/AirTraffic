@@ -1,3 +1,18 @@
 .App {
-  text-align: center;
+    text-align: center;
+    width: 100%;
+}
+
+h3{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.error-box{
+    padding: 25px 15px;
+    background-color: #ffd8d8;
+    color: #8b1919;
+    border-radius: 5px;
+    border: 1px solid #8d0b0b;
+    margin-top: 40px;
 }

@@ -1,0 +1,29 @@
+.main-content{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.flights-list{
+    list-style: none;
+    margin-top: 40px;
+}
+
+.flights-list li{
+    display: flex;
+    height: 45px;
+    padding: 0 10px;
+}
+
+.flights-list li div{
+    max-width: 33.33%;
+    flex: 1;
+    line-height: 45px;
+}
+
+.flight-item img{
+    vertical-align: middle;
+}
+
+.flight-item img.rotated{
+    transform: rotate(180deg);
+}
