@@ -3,7 +3,8 @@ import axios from 'axios';
 import Header from './Header';
 import List from './List';
 import Error from './Error';
-import '../App.css';
+import loader from '../images/loader.gif';
+import '../css/App.css';
 
 const BASE_URL = 'https://cors.io/?https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstU=100';
 
@@ -16,6 +17,7 @@ class App extends Component {
             location: {},
             flights: [],
             error: '',
+            isLoading: true,
             seconds: 0
         }
 
@@ -55,8 +57,10 @@ class App extends Component {
         //Getting flights data
         axios(URL).then(response => {
             this.setState({
-                flights: response.data.acList
+                flights: response.data.acList,
+                isLoading: false
             });
+
             console.log(response.data.acList)
         });
 
@@ -106,6 +110,7 @@ class App extends Component {
 
                 <main className="main-content">
                     <h3>List of all airplanes that are flying over current location of user</h3>
+                    { this.state.isLoading && <img src={loader} alt="Loading" className="loader" /> }
                     { this.state.error === '' && <List flights={this.state.flights} />}
                     { this.state.error !== '' && <Error content={this.state.error} />}
                 </main>

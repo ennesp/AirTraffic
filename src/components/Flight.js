@@ -28,12 +28,18 @@ class Flight extends Component {
     }
 
     componentDidMount = () => {
-        this.getCompanyLogo(this.props.location.state.flight.Op);
+        if(this.props.location.state){
+            this.getCompanyLogo(this.props.location.state.flight.Op);
+        }
     }
 
     render(){
-        const flight = this.props.location.state.flight;
-        console.log(flight)
+        let flight = {};
+        if(this.props.location.state){
+            flight = this.props.location.state.flight;
+            console.log(flight);
+        }
+
         return (
             <div className="App">
                 <Header />
