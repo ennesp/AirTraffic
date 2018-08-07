@@ -5,8 +5,8 @@ import plane from '../images/plane.png';
 const ListItem = (props) => (
     <li className="flight-item">
         <Link to={{
-                  pathname: `/flight/${props.flight.Id}`,
-                  state: { flight: props.flight }
+            pathname: `/flight/${props.flight.Id}`,
+            state: { flight: props.flight }
         }}>
             <div>
                 {props.number+1}
@@ -22,6 +22,6 @@ const ListItem = (props) => (
             </div>
         </Link>
     </li>
-)
+);
 
 export default ListItem;

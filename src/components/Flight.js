@@ -37,7 +37,6 @@ class Flight extends Component {
         let flight = {};
         if(this.props.location.state){
             flight = this.props.location.state.flight;
-            console.log(flight);
         }
 
         return (

@@ -19,11 +19,13 @@ const List = props => (
             if (a.Alt < b.Alt)
                 return 1;
             else
-                return 0;}).map( (flight, i) => {
-            return (
-                <ListItem flight={flight} key={flight.Id} number={i} />
-            );
-        })}
+                return 0;
+            }).map( (flight, i) => {
+                return (
+                    <ListItem flight={flight} key={flight.Id} number={i} />
+                );
+            })
+        }
 
     </div>
 );

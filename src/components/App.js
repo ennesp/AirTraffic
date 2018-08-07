@@ -6,7 +6,7 @@ import Error from './Error';
 import loader from '../images/loader.gif';
 import '../css/App.css';
 
-const BASE_URL = 'https://cors.io/?https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstU=100';
+const BASE_URL = 'https://cors.io/?https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstL=0&fDstU=100';
 
 class App extends Component {
 
@@ -17,11 +17,8 @@ class App extends Component {
             location: {},
             flights: [],
             error: '',
-            isLoading: true,
-            seconds: 0
+            isLoading: true
         }
-
-        this.getFlights = this.getFlights.bind(this);
     }
 
     componentDidMount = () => {
@@ -30,7 +27,7 @@ class App extends Component {
             navigator.geolocation.getCurrentPosition(this.setCoords, this.showError);
         }
 
-        this.interval = setInterval(() => this.timer(), 1000);
+        this.interval = setInterval(this.getFlights, 60000);
     }
 
     componentWillUnmount = () => {
@@ -91,18 +88,6 @@ class App extends Component {
         });
     }
 
-    //Timer to make API call on every 60 secs
-    timer() {
-        this.setState(prevState => ({
-            seconds: prevState.seconds + 1
-        }));
-
-        if(this.state.seconds === 60){
-            this.getFlights();
-            this.setState({seconds: 0});
-        }
-    }
-
     render(){
         return (
             <div className="App">
@@ -110,9 +95,9 @@ class App extends Component {
 
                 <main className="main-content">
                     <h3>List of all airplanes that are flying over current location of user</h3>
+                    { this.state.error !== '' && <Error content={this.state.error} />}
                     { this.state.isLoading && <img src={loader} alt="Loading" className="loader" /> }
                     { this.state.error === '' && <List flights={this.state.flights} />}
-                    { this.state.error !== '' && <Error content={this.state.error} />}
                 </main>
             </div>
         );
