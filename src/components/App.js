@@ -57,10 +57,7 @@ class App extends Component {
                 flights: response.data.acList,
                 isLoading: false
             });
-
-            console.log(response.data.acList)
         });
-
     }
 
     //Display error if location is unavailable
