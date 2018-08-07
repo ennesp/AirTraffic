@@ -37,30 +37,89 @@ a{
 
 .flight-details{
     margin-top: 50px;
-    padding: 25px;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 20px 5px rgba(34, 49, 63, .2);
 }
 
 .flight-details .info{
-    margin-bottom: 20px;
     font-size: 0;
+    padding: 25px;
+    border-bottom: 1px solid #F2F3F8;
+}
+
+.flight-details .info:last-child{
+    border-bottom: 0;
 }
 
 .flight-details .info span{
     display: inline-block;
-    width: 50%;
+    width: 49%;
     font-size: 15px;
     text-align: left;
+    vertical-align: middle;
 }
 
 .flight-details .info span:first-child{
     font-weight: 600;
     color: #2574A9;
+    margin-right: 2%;
 }
 
 .company-logo{
     width: 60px;
     vertical-align: middle;
+}
+
+/* Media Queries */
+
+@media (max-width: 767px){
+    .flight-details .info:not(:first-child) span{
+        display: block;
+        width: 100%;
+    }
+
+    .flight-details .info:first-child{
+        text-align: left;
+    }
+
+    .flight-details .info:first-child span{
+        width: auto;
+        margin-bottom: 0;
+    }
+
+    .flight-details .info span:first-child{
+        margin-bottom: 15px;
+    }
+
+    .flight-details .info:first-child span:first-child{
+        margin-bottom: 0;
+        margin-right: 70px;
+    }
+}
+
+@media (max-width: 480px){
+    .flights-list li div{
+        font-size: 14px;
+    }
+
+    .flights-list .list-header{
+        padding: 0;
+    }
+
+    .flights-list .list-header div{
+        font-size: 13px;
+    }
+
+    h3{
+        font-size: 18px;
+    }
+
+    .flight-details .info span{
+        font-size: 14px;
+    }
+
+    .flight-details .info{
+        padding: 25px 15px;
+    }
 }

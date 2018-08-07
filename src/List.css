@@ -22,6 +22,10 @@
     color: #22313F;
 }
 
+.flights-list li:not(:first-child) div:first-child{
+    color: #4183D7;
+}
+
 .flights-list li:not(:first-child){
     background-color: #fff;
     border-radius: 5px;
