@@ -9,6 +9,9 @@ const ListItem = (props) => (
                   state: { flight: props.flight }
         }}>
             <div>
+                {props.number+1}
+            </div>
+            <div>
                 <img src={plane} alt="PLane" style={{width: 30+'px'}} className={props.flight.Trak < 180 ? '' : 'rotated'} />
             </div>
             <div>

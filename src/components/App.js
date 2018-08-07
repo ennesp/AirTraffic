@@ -5,7 +5,7 @@ import List from './List';
 import Error from './Error';
 import '../App.css';
 
-const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstU=120';
+const BASE_URL = 'https://cors.io/?https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstU=100';
 
 class App extends Component {
 
@@ -15,7 +15,8 @@ class App extends Component {
         this.state = {
             location: {},
             flights: [],
-            error: ''
+            error: '',
+            seconds: 0
         }
 
         this.getFlights = this.getFlights.bind(this);
@@ -24,11 +25,17 @@ class App extends Component {
     componentDidMount = () => {
         //Getting user location
         if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(this.getFlights, this.showError);
+            navigator.geolocation.getCurrentPosition(this.setCoords, this.showError);
         }
+
+        this.interval = setInterval(() => this.timer(), 1000);
     }
 
-    getFlights = position => {
+    componentWillUnmount = () => {
+        clearInterval(this.interval);
+    }
+
+    setCoords = position => {
         this.setState({
             location: {
                 lat: position.coords.latitude,
@@ -36,6 +43,11 @@ class App extends Component {
             }
         });
 
+        this.getFlights();
+    }
+
+    //Make API call to get Flights data
+    getFlights = () => {
         const location = this.state.location;
 
         const URL = `${BASE_URL}&lat=${location.lat}&lng=${location.lng}`;
@@ -45,8 +57,7 @@ class App extends Component {
             this.setState({
                 flights: response.data.acList
             });
-
-            console.log(this.state.flights);
+            console.log(response.data.acList)
         });
 
     }
@@ -74,6 +85,18 @@ class App extends Component {
         this.setState({
             error: err
         });
+    }
+
+    //Timer to make API call on every 60 secs
+    timer() {
+        this.setState(prevState => ({
+            seconds: prevState.seconds + 1
+        }));
+
+        if(this.state.seconds === 60){
+            this.getFlights();
+            this.setState({seconds: 0});
+        }
     }
 
     render(){

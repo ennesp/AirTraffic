@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import logo from '../images/logo.png';
+import { Link } from "react-router-dom";
 import Header from './Header';
 
 const LOGO_FINDER_URL = 'https://autocomplete.clearbit.com/v1/companies/suggest?query=';
@@ -16,8 +16,7 @@ class Flight extends Component {
     }
 
     getCompanyLogo = company => {
-        let img = logo;
-
+        let img;
         axios(`${LOGO_FINDER_URL}${company}`).then(response => {
             if(response.data.length > 0){
                 img = response.data[0].logo;
@@ -40,11 +39,19 @@ class Flight extends Component {
                 <Header />
 
                 <main className="main-content">
-                    <div>Flight Details</div>
+                    <p style={{textAlign: 'left'}}>
+                        <Link to={{ pathname: `/` }}>Go Back</Link>
+                    </p>
+
+                    <h3 style={{marginTop: '15px'}}>Flight Details</h3>
 
                     <div className="flight-details">
                         <div className="info">
-                            {this.state.logo && <img className="company-logo" src={this.state.logo} alt={flight.Op} />}
+                            <span>Company: </span>
+                            <span>
+                                {this.state.logo && <img className="company-logo" src={this.state.logo} alt={flight.Op} />}
+                                {this.state.logo === '' && flight.Op}
+                            </span>
                         </div>
 
                         <div className="info">

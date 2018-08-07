@@ -2,21 +2,24 @@ import React from 'react';
 import ListItem from './ListItem';
 import '../List.css';
 
-const List = props => (
-    <div className="flights-list">
-        <li className="list-header">
-            <div>Direction</div>
-            <div>Altitude</div>
-            <div>Flight code</div>
-        </li>
+const List = props => {
+    return(
+        <div className="flights-list">
+            <li className="list-header">
+                <div>Number</div>
+                <div>Direction</div>
+                <div>Altitude</div>
+                <div>Flight code</div>
+            </li>
 
-        { props.flights.map( flight => {
-            return (
-                <ListItem flight={flight} key={flight.Id} />
-            );
-        })}
+            { [...props.flights].sort((a, b) => a.Alt < b.Alt).map( (flight, i) => {
+                return (
+                    <ListItem flight={flight} key={flight.Id} number={i} />
+                );
+            })}
 
-    </div>
-)
+        </div>
+    )
+}
 
 export default List;

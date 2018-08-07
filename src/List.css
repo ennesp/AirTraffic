@@ -1,17 +1,13 @@
-.main-content{
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
 .flights-list{
     list-style: none;
     margin-top: 40px;
 }
 
 .flights-list li{
-    height: 45px;
+    height: 60px;
     padding: 0 10px;
     display: flex;
+    margin-bottom: 15px;
 }
 
 .flights-list li a{
@@ -22,7 +18,20 @@
 .flights-list li div{
     max-width: 33.33%;
     flex: 1;
-    line-height: 45px;
+    line-height: 60px;
+    color: #22313F;
+}
+
+.flights-list li:not(:first-child){
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px 0px rgba(34, 49, 63, .04);
+    transition: all .6s;
+}
+
+.flights-list li:not(:first-child):hover{
+    transform: scaleX(1.03) scaleY(1.1);
+    box-shadow: 0 3px 15px 5px rgba(34, 49, 63, .2);
 }
 
 .flight-item img{
@@ -31,4 +40,9 @@
 
 .flight-item img.rotated{
     transform: rotate(180deg);
+}
+
+.flights-list .list-header div{
+    color: rgba(52, 73, 94, .4);
+    font-weight: 600;
 }

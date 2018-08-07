@@ -9,10 +9,16 @@ p{
   padding: 0;
 }
 
+a,
+a:hover{
+    text-decoration: none;
+}
+
 *{
     box-sizing: border-box;
 }
 
 body{
     font-family: 'Open Sans', sans-serif;
+    background-color: #F2F3F8;
 }
