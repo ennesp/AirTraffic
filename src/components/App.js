@@ -5,8 +5,9 @@ import List from './List';
 import Error from './Error';
 import loader from '../images/loader.gif';
 import '../css/App.css';
+import AirplaneMapContainer from './map/AirplaneMapContainer';
 
-const BASE_URL = 'https://cors.io/?https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstL=0&fDstU=100';
+const BASE_URL = 'https://cors.io/?https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?fDstL=0&fDstU=70';
 
 class App extends Component {
 
@@ -95,6 +96,7 @@ class App extends Component {
                     { this.state.error !== '' && <Error content={this.state.error} />}
                     { this.state.isLoading && <img src={loader} alt="Loading" className="loader" /> }
                     { this.state.error === '' && <List flights={this.state.flights} />}
+                    { this.state.error === '' && <AirplaneMapContainer airplanes={this.state.flights} coords={this.state.location} />}
                 </main>
             </div>
         );

@@ -13,14 +13,7 @@ const List = props => (
             </li>
         }
 
-        { [...props.flights].sort((a, b) => {
-            if (a.Alt > b.Alt)
-                return -1;
-            if (a.Alt < b.Alt)
-                return 1;
-            else
-                return 0;
-            }).map( (flight, i) => {
+        { [...props.flights].sort((a, b) => b.Alt - a.Alt).map( (flight, i) => {
                 return (
                     <ListItem flight={flight} key={flight.Id} number={i} />
                 );

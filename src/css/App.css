@@ -29,7 +29,7 @@ a{
 
 .header{
     background-color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     padding: 25px 0;
 }
 
@@ -74,6 +74,26 @@ a{
 .company-logo{
     width: 60px;
     vertical-align: middle;
+}
+
+.info-window{
+    text-align: left;
+    padding: 10px;
+}
+
+.info-window p{
+    font-size: 15px;
+    color: #2574A9;
+}
+
+.info-window p + p{
+    margin-top: 15px;
+}
+
+.info-window p span{
+    display: inline-block;
+    margin-right: 15px;
+    width: 70px;
 }
 
 /* Media Queries */
