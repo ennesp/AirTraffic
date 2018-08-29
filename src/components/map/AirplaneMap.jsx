@@ -16,7 +16,7 @@ const AirplaneMap = withScriptjs(withGoogleMap((props) => {
         
         let location, zoom;
         if(props.coords.lat){
-            zoom = 10;
+            zoom = 9;
             location = props.coords;
         }else{
             location = {
